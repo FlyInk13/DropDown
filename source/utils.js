@@ -17,6 +17,12 @@ var KeysVariations = [
     ]
 ];
 
+/**
+ * changeKeys смена символов по карте из KeysVariations.
+ * @param {string} str - Строка для замены.
+ * @param {number} keyIndex - id карты.
+ * @param {boolean} inv - инверсия.
+ */
 function changeKeys(str, keyIndex, inv) {
     var keys = KeysVariations[keyIndex];
     var from = inv ? 1 : 0;
@@ -27,20 +33,37 @@ function changeKeys(str, keyIndex, inv) {
     return str;
 }
 
+/**
+ * latinToCyr транслитерация.
+ * @param {string} str - Строка для замены.
+ * @param {boolean} inv - инверсия.
+ */
 function latinToCyr(str, inv) {
     str = changeKeys(str, 0, inv);
     str = changeKeys(str, 1, inv);
     return str;
 }
 
+/**
+ * escapeHTML экранизация HTML.
+ * @param {string} str - Строка для замены.
+ */
 function escapeHTML(str) {
     return changeKeys(str, 3);
 }
 
+/**
+ * escapeHTML экранизация регулярок.
+ * @param {string} str - Строка для замены.
+ */
 function escapeRegExp(str) {
     return str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
 }
 
+/**
+ * createSearchReg создает регулярное выражение для поиска.
+ * @param {string} str - Строка для замены.
+ */
 function createSearchReg(str) {
     str = str.toLocaleLowerCase();
     var regexp = [];
@@ -62,6 +85,10 @@ function createSearchReg(str) {
     return new RegExp(regexp.join('|'), 'ig');
 }
 
+/**
+ * qextend примитивный аналог Object.assign.
+ * @param {string} str - Строка для замены.
+ */
 function qextend(dist, from) {
     for (var n in from) {
         if (from.hasOwnProperty(n)) {
@@ -71,6 +98,10 @@ function qextend(dist, from) {
     return dist;
 }
 
+/**
+ * qce примитивный аналог q.ce, создает элемент с вложениями.
+ * @param {string} str - Строка для замены.
+ */
 function qce(tagName, opts, childs) {
     var el = document.createElement(tagName);
     qextend(el, opts);
@@ -82,6 +113,10 @@ function qce(tagName, opts, childs) {
     return el;
 }
 
+/**
+ * stopPropagation event.stopPropagation
+ * @param {string} str - Строка для замены.
+ */
 function stopPropagation(event) {
     event.stopPropagation();
     return false;
