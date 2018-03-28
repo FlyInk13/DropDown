@@ -1,1 +1,167 @@
+body {
+    font-size: 13px;
+    background: #eee;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+.demo {
+    background: #fff;
+    margin: 6px auto;
+    padding: 24px;
+    max-width: 500px;
+}
 
+.fl_l {
+    float: left;
+}
+
+.fl_r {
+    float: right;
+}
+
+.dropdown, .dd_items_container {
+    text-align: left;
+    background: #fff;
+    box-shadow: 0px 0px 0px 1px #d3d9de;
+    border-radius: 2px;
+    position: relative;
+}
+
+.dd_search_input {
+    border: 0px;
+    width: 100%;
+    outline: 0px;
+    box-sizing: border-box;
+    font-size: inherit;
+    padding: 5px 6px;
+}
+
+.dd_selected_container {
+    padding: 3px;
+    display: block;
+    overflow: hidden;
+}
+
+.dd_selected_item {
+    display: block;
+    padding: 4px 6px;
+    border-radius: 2px;
+    margin: 1px;
+    float: left;
+    color: #55677d;
+    white-space: nowrap;
+    font-size: 13px;
+    cursor: default;
+    background: #dae2e8;
+}
+
+.icon, .dd_selected_item:after {
+    width: 12px;
+    height: 12px;
+    background: blue;
+    margin: 2px 0px 2px 6px;
+    content: " ";
+    display: inline-block;
+    float: right;
+    background: url(https://vk.com/images/icons/tag_cross.png) 50% no-repeat;
+    background-image: url(https://vk.com/images/icons/tag_cross_2x.png);
+    background-size: 10px;
+    opacity: 0.8;
+}
+
+.dd_item {
+    padding: 8px 12px;
+    box-sizing: border-box;
+}
+
+.extended .dd_item {
+    min-height: 50px;
+}
+
+.dd_items_container {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    display: none;
+    border-radius: 0px;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 2;
+}
+
+.dd_open {
+    margin: 9px;
+    transform: rotate(0deg);
+    transition: transform all .2s;
+    background-image: url(https://vk.com/images/dropdown_arrow_2x.png);
+}
+
+.open .dd_open {
+    transform: rotate(180deg);
+}
+
+.dropdown.open .dd_items_container {
+    display: block;
+}
+
+.dropdown.open .dd_search_input {
+    display: block;
+}
+
+.dropdown.open {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.dd_item.active {
+    background: #dae2e8;
+}
+
+.separated .dd_items_container .dd_item {
+    border-top: 1px solid #d3d9de;
+}
+
+.separated .dd_items_container .dd_item:first-child {
+    border-top: 0px;
+}
+
+.dd_item_icon, .dd_item_icon img {
+    border-radius: 2px;
+    width: 34px;
+    height: 34px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.rounded .dd_item_icon {
+    border-radius: 100%;
+}
+
+.single_name .dd_item_name {
+    margin-top: 9px;
+}
+
+.dd_inline {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dd_item_name {
+    font-weight: 700;
+}
+
+.dd_item.warn {
+    background: #fafbfc;
+    padding: 18px 15px 17px;
+    text-align: center;
+}
+
+.dd_item b {
+    background: #e7edf2;
+}
+
+.dd_item_descr {
+    color: #4e5966;
+}
