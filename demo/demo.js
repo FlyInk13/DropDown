@@ -1,12 +1,12 @@
 
 function jsonp(url, callback) {
     var rid = 'f' + Math.random().toString(16).substr(2);
-    get[rid] = function onRes(r) {
+    jsonp[rid] = function onRes(r) {
         callback(r);
-        delete get[rid];
+        delete jsonp[rid];
     };
     document.head.appendChild(qce('script', {
-        src: url + '&callback=get.' + rid,
+        src: url + '&callback=jsonp.' + rid,
         onload: function onScriptLoaded(e) {
             e.target.outerHTML = '';
         }
