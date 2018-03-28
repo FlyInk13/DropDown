@@ -198,7 +198,6 @@ DropDown.prototype.valueRemove = function valueRemove(id, event) {
         this.selected[id].outerHTML = '';
         delete this.selected[id];
     }
-    this.renderList();
     if (!event) return false;
     return event.stopPropagation();
 };
@@ -223,7 +222,10 @@ DropDown.prototype.onKeyDown = function onKeyDown(event) {
         case 8: // backspace
             if (this.dom.input.value.length || !this.multiselect) return;
             var id = this.value.pop();
-            if (id) this.valueRemove(id);
+            if (id) {
+                this.valueRemove(id);
+                this.renderList();
+            }
             break;
     }
 };
