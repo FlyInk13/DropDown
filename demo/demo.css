@@ -1,0 +1,14 @@
+body {
+    font-size: 13px;
+    background: #eee;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+.demo {
+    background: #fff;
+    margin: 6px auto;
+    padding: 24px;
+    max-width: 500px;
+}
+a {
+    color: inherit;
+}
