@@ -32,12 +32,15 @@ function DropDown(opts) {
     this.dom = {
         selected: this.body.querySelector('.dd_selected_container'),
         items: this.body.querySelector('.dd_items_container'),
-        input: this.body.querySelector('.dd_search_input')
+        input: this.body.querySelector('.dd_search_input'),
+        open: this.body.querySelector('.dd_open')
     };
 
     this.body.addEventListener('click', this.onFocus.bind(this));
+    this.dom.open.addEventListener('mousedown', this.toggle.bind(this));
+    this.dom.open.addEventListener('click', this.toggle.bind(this));
     this.dom.input.addEventListener('focus', this.onFocus.bind(this));
-    this.dom.input.addEventListener('blur', this.close.bind(this));
+    this.dom.input.addEventListener('blur', this.onBlur.bind(this));
     this.dom.input.addEventListener('keydown', this.onKeyDown.bind(this));
     this.dom.input.addEventListener('input', this.onInput.bind(this));
     this.dom.items.addEventListener('scroll', this.onScroll.bind(this));
@@ -100,6 +103,17 @@ DropDown.prototype.excludeSelected = function excludeSelected(item) {
 DropDown.prototype.search = function search(item) {
     var searchIn = ['id' + item.id, item.screen_name, item.name].join(' ');
     return this.reg.test(searchIn);
+};
+/** DropDown.toggle открытие / закрытие списка на переключатель  */
+DropDown.prototype.toggle = function toggle(event) {
+    this.disableBlur = event.type == 'mousedown';
+    if (this.disableBlur) return;
+    if (this.body.classList.contains('open')) {
+        this.close();
+    } else {
+        this.onFocus();
+    }
+    return event.stopPropagation();
 };
 /** DropDown.close закрывает список, очищает его и скрывает поле ввода при мультивыборе. */
 DropDown.prototype.close = function close() {
@@ -228,6 +242,11 @@ DropDown.prototype.onKeyDown = function onKeyDown(event) {
             }
             break;
     }
+};
+/** DropDown.onBlur функция вызываемая при скрытии фокуса с поля ввода. */
+DropDown.prototype.onBlur = function onBlur() {
+    if (this.disableBlur) return;
+    this.close();
 };
 /** DropDown.onEmpty функция вызываемая при пустом списке. */
 DropDown.prototype.onEmpty = function onEmpty() {
