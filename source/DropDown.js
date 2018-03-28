@@ -43,6 +43,10 @@ function DropDown(opts) {
     this.dom.input.addEventListener('blur', this.onBlur.bind(this));
     this.dom.input.addEventListener('keydown', this.onKeyDown.bind(this));
     this.dom.input.addEventListener('input', this.onInput.bind(this));
+    this.dom.input.addEventListener('click', function r(event) {
+        event.stopPropagation();
+        return false;
+    });
     this.dom.items.addEventListener('scroll', this.onScroll.bind(this));
     this.setValue(this.value, 1);
     if (this.addTo) this.addTo.appendChild(this.body);
