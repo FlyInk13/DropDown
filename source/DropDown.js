@@ -143,7 +143,7 @@ DropDown.prototype.setActive = function setActive(el) {
  * @param {object} item - элемент для добавления.
  */
 DropDown.prototype.addValue = function addValue(item) {
-    this.value.push(item.id);
+    if (this.value.indexOf(item.id) == -1) this.value.push(item.id);
     this.dom.input.value = '';
     this.selected[item.id] = qce('div', {
         className: 'dd_selected_item',
@@ -171,7 +171,6 @@ DropDown.prototype.selectById = function select(id) {
     var item = this.items.find(function findById(i) {
         return i.id == id;
     });
-    console.log(item);
     if (this.multiselect) return this.addValue(item);
     this.value = item.id;
     this.dom.input.value = item.name;
@@ -188,6 +187,7 @@ DropDown.prototype.valueRemove = function valueRemove(id, event) {
     if (!this.value.length) this.dom.input.style.display = 'block';
     this.selected[id].outerHTML = '';
     delete this.selected[id];
+    if (this.multiselect && !this.value.length) this.dom.input.style.display = 'block';
     if (!event) return false;
     return event.stopPropagation();
 };
@@ -218,7 +218,6 @@ DropDown.prototype.onKeyDown = function onKeyDown(event) {
 };
 /** DropDown.onEmpty функция вызываемая при пустом списке. */
 DropDown.prototype.onEmpty = function onEmpty() {
-    console.log('empty');
     return this.setWarn(this.lang.empty);
 };
 /** DropDown.onScroll функция вызываемая при прокрутке, добавляет элементы в список. */
