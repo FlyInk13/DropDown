@@ -14,10 +14,10 @@ function jsonp(url, callback) {
 }
 
 function api(method, data, callback) {
-    var url = 'https://api.vk.com/method/?v=5.45';
+    var url = 'https://api.vk.com/method/' + method + '?v=5.45';
     for (var name in data) {
         if (data.hasOwnProperty(name)) {
-            url += '&' + encodeURIComponent(name) + ' ' + encodeURIComponent(data[name]);
+            url += '&' + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
         }
     }
     jsonp(url, callback);
