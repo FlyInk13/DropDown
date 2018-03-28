@@ -11,7 +11,8 @@ function DropDown(opts) {
     this.selected = {};
     this.createItem = this.render.createBasicItem;
     if (!opts) opts = {};
-    if (!opts.createItem && opts.extended) {
+    if (opts.multiselect) this.value = [];
+    if (opts.extended && !opts.createItem) {
         opts.createItem = this.render.createExtendedItem;
     }
     qextend(this, opts);
@@ -40,15 +41,7 @@ function DropDown(opts) {
     this.dom.input.addEventListener('keydown', this.onKeyDown.bind(this));
     this.dom.input.addEventListener('input', this.onInput.bind(this));
     this.dom.items.addEventListener('scroll', this.onScroll.bind(this));
-
-    if (this.multiselect) {
-        if (!this.value) this.value = [];
-        this.value.forEach(this.selectById.bind(this));
-        this.close();
-    } else if (this.value) {
-        this.selectById(this.value);
-    }
-
+    this.setValue(this.value, 1);
     if (this.addTo) this.addTo.appendChild(this.body);
     return this;
 }
@@ -126,6 +119,22 @@ DropDown.prototype.setWarn = function setWarn(title) {
     }));
 };
 /**
+ * DropDown.setValue выбор списка.
+ * @param {string} value - новое значение.
+ * @param {boolean} add - оставить старые значения
+ */
+DropDown.prototype.setValue = function setValue(value, add) {
+    if (this.multiselect) {
+        if (!add) this.value.forEach(this.valueRemove.bind(this));
+        this.value = value;
+        this.value.forEach(this.selectById.bind(this));
+        this.close();
+    } else if (this.value) {
+        this.value = value;
+        this.selectById(this.value);
+    }
+};
+/**
  * DropDown.setActive подсвечивает элемент списка.
  * @param {object} el - элемент для подсвечивания.
  */
@@ -185,9 +194,11 @@ DropDown.prototype.valueRemove = function valueRemove(id, event) {
     var i = this.value.indexOf(id);
     if (i > -1) this.value.splice(i, 1);
     if (!this.value.length) this.dom.input.style.display = 'block';
-    this.selected[id].outerHTML = '';
-    delete this.selected[id];
-    if (this.multiselect && !this.value.length) this.dom.input.style.display = 'block';
+    if (this.selected[id]) {
+        this.selected[id].outerHTML = '';
+        delete this.selected[id];
+    }
+    this.renderList();
     if (!event) return false;
     return event.stopPropagation();
 };
