@@ -12,6 +12,7 @@ var dd1 = new DropDown({
 });
 ```
 Живые примеры: https://ifx.su/DropDown/demo/
+JSDoc: http://ifx.su/DropDown/docs/
 
 ## DropDown: Опции
 * opts.items - массив с элементами { id, name, ... }
