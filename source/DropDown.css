@@ -80,7 +80,7 @@
 .dd_open {
     margin: 9px;
     transform: rotate(0deg);
-    transition: transform all .2s;
+    transition: transform .2s;
     background-image: url(https://vk.com/images/dropdown_arrow_2x.png);
 }
 
