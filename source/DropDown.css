@@ -62,8 +62,7 @@ body {
     content: " ";
     display: inline-block;
     float: right;
-    background: url(https://vk.com/images/icons/tag_cross.png) 50% no-repeat;
-    background-image: url(https://vk.com/images/icons/tag_cross_2x.png);
+    background: url(https://vk.com/images/icons/tag_cross_2x.png) 50% no-repeat;
     background-size: 10px;
     opacity: 0.8;
 }
