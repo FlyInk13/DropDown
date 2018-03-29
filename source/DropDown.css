@@ -16,6 +16,10 @@
     position: relative;
 }
 
+.dd_search_input::-ms-clear {
+    display: none;
+}
+
 .dd_search_input {
     border: 0px;
     width: 100%;

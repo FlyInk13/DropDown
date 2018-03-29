@@ -45,5 +45,5 @@ var dd1 = new DropDown({
 * Два предварительных шаблона для отрисовки списков (простой и с аватарками)
 * Игнорирование раскладки
 * Мультивыбор
-* Поддержка [ie10](https://www.browserling.com/browse/win/7/ie/10/https%3A%2F%2Fifx.su%2FDropDown%2Fdemo%2F)
+* Поддержка [ie10](https://www.browserling.com/browse/win/7/ie/10/https%3A%2F%2Fifx.su%2FDropDown%2Fdemo%2F) (ie9, если подключить полифилл classList)
 * Отображение только нужных элементов

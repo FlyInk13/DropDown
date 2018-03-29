@@ -36,6 +36,8 @@ function DropDown(opts) {
         open: this.body.querySelector('.dd_open')
     };
 
+    this.setValue(this.value, 1);
+    this.dom.input.old_value = this.dom.input.value; // ie10, 11
     this.body.addEventListener('click', this.onFocus.bind(this));
     this.dom.open.addEventListener('mousedown', this.toggle.bind(this));
     this.dom.open.addEventListener('click', this.toggle.bind(this));
@@ -48,7 +50,7 @@ function DropDown(opts) {
         return false;
     });
     this.dom.items.addEventListener('scroll', this.onScroll.bind(this));
-    this.setValue(this.value, 1);
+
     if (this.addTo) this.addTo.appendChild(this.body);
     return this;
 }
@@ -271,7 +273,10 @@ DropDown.prototype.onFocus = function onFocus() {
 };
 /** DropDown.onInput функция при вводе. */
 DropDown.prototype.onInput = function onInput() {
+    var input = this.dom.input;
+    if (input.value === input.old_value) return; // ie10, 11
     this.renderList();
+    input.old_value = input.value; // ie10, 11
 };
 
 
