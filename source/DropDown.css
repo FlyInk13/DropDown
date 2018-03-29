@@ -158,3 +158,30 @@
 .dd_item_descr {
     color: #4e5966;
 }
+
+
+/* scrollbar */
+.dd_items_container{
+    scrollbar-base-color: #888;
+    scrollbar-arrow-color: #f1f1f1;
+    scrollbar-track-color: #ccccff;
+
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.dd_items_container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dd_items_container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.dd_items_container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.dd_items_container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
