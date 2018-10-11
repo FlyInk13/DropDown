@@ -11,8 +11,8 @@ var dd1 = new DropDown({
     addTo: document.getElementById('demo1')
 });
 ```
-* Живые примеры: https://ifx.su/DropDown/demo/
-* JSDoc: http://ifx.su/DropDown/docs/
+* Живые примеры: https://flyink13.github.io/DropDown/demo/
+* JSDoc: ~~~http://ifx.su/DropDown/docs/~~~
 
 ## DropDown: Опции
 * opts.items - массив с элементами { id, name, ... }
@@ -22,7 +22,7 @@ var dd1 = new DropDown({
 * opts.lang - строки для вывода
     * placeholder - заглушка поля ввода
     * empty - предупреждение о пустом списке
-* ... - любые функции из [DropDown.prototype](source/DropDown.js) ([JSDoc](https://ifx.su/DropDown/docs/DropDown.html))
+* ... - любые функции из [DropDown.prototype](source/DropDown.js) ~~~([JSDoc](https://ifx.su/DropDown/docs/DropDown.html))~~~
 
 ## DropDown: Результат
 Отдает экземпляр DropDown
